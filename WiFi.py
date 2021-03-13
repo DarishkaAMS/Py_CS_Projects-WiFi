@@ -1,7 +1,7 @@
 import subprocess
 import re
 
-command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
+command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode('Windows-1251')
 
 profile_names = (re.findall("All User Profile     : (.*)\r", command_output))
 
@@ -10,12 +10,13 @@ wifi_list = list()
 if len(profile_names) != 0:
     for name in profile_names:
         wifi_profile = dict()
-        profile_info = subprocess.run(["netsh", "wlan", "show", "profile", name], capture_output=True).stdout.decode()
+        profile_info = subprocess.run(["netsh", "wlan", "show", "profile", name], capture_output=True)\
+            .stdout.decode('Windows-1251')
         if re.search("Security key           : Absent", profile_info):
             continue
         else:
             wifi_profile["ssid"] = name
-            profile_info_pass = subprocess.run(["netsh", "wlan", "show", "profile", name, "key=clear"], capture_output = True).stdout.decode()
+            profile_info_pass = subprocess.run(["netsh", "wlan", "show", "profile", name, "key=clear"], capture_output = True).stdout.decode('Windows-1251')
             password = re.search("Key Content            : (.*)\r", profile_info_pass)
 
             if password == None:
