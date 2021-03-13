@@ -1,7 +1,7 @@
 import subprocess
 import re
 
-command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output = True).stdout.decode()
+command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
 
 profile_names = (re.findall("All User Profile     : (.*)\r", command_output))
 
