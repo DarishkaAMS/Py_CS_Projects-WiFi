@@ -8,7 +8,7 @@ profile_names = (re.findall("All User Profile     : (.*)\r", command_output))
 
 wifi_list = list()
 
-if len(profile_names) != 0:
+if len(profile_names):
     for name in profile_names:
         wifi_profile = dict()
         profile_info = subprocess.run(["netsh", "wlan", "show", "profile", name], capture_output=True)\
